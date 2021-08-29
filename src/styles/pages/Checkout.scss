@@ -26,6 +26,14 @@
     .items ul {
         display: flex;
         flex-direction: column;
+
+        > :nth-child(n) {
+            background-color: #fff;
+        }
+
+        > :nth-child(2n) {
+            background-color: #dde;
+        }
     }
 
     .checkout {

@@ -1,3 +1,4 @@
+import '../../styles/components/CartItem.scss'
 import { useContext } from "react"
 import { CartContext } from "../../contexts/CartContext"
 
@@ -24,12 +25,14 @@ export function CartItem({ id, name, price, image }: CartItemProps) {
             <div className="name">
                 {name}
             </div>
-            <div className="price">
-                {price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-            </div>
-            <div className="remove">
-                <button onClick={remove}>Remover</button>
-            </div>
+            <section>
+                <div className="price">
+                    {price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                </div>
+                <div className="remove">
+                    <button onClick={remove}>Remover</button>
+                </div>
+            </section>
         </div>
     )
 }
