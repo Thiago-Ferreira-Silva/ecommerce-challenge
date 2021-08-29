@@ -1,3 +1,4 @@
+import '../../styles/components/Product.scss'
 import { useContext } from "react"
 import { CartContext } from "../../contexts/CartContext"
 
@@ -9,7 +10,7 @@ type ProductProps = {
     image: string
 }
 
-export function Product({ id, name, price, score, image } : ProductProps) {
+export function Product({ id, name, price, score, image }: ProductProps) {
 
     const { addItem } = useContext(CartContext)
 
@@ -23,14 +24,16 @@ export function Product({ id, name, price, score, image } : ProductProps) {
             <div className="image">
                 <img src={`/assets/${image}`} alt={name} />
             </div>
+            <section>
+                <div className="price">
+                    {price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                </div>
+                <div className="score">
+                score <span>{score}</span>
+                </div>
+            </section>
             <div className="name">
                 {name}
-            </div>
-            <div className="price">
-                {price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
-            </div>
-            <div className="score">
-                {score}
             </div>
             <div className="add-to-cart">
                 <button onClick={addToCart}>Adicionar ao carrinho</button>
