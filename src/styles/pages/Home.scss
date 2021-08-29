@@ -1,0 +1,48 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+
+    header {
+        background-color: #b9c9cc;
+        height: 10vh;
+        padding: 0 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .search input {
+            height: 2.3rem;
+            width: 18rem;
+        }
+
+        .link-to-cart {
+            img {
+                height: 3rem;
+                width: 3rem;
+            }
+        }
+    }
+
+    .order-by {
+        button {
+            margin: 10px;
+            background: transparent;
+            border: none;
+            font-size: 1.1rem;
+
+            display: flex;
+            align-items: center;
+
+            span {
+                margin-left: 6px;
+            }
+        }
+    }
+
+    .products ul {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 5vw;
+    }
+}

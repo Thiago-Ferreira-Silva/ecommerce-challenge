@@ -1,3 +1,4 @@
+import '../../styles/pages/Home.scss'
 import { ReactNode, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import productsJSON from '../../data/products.json'
@@ -15,7 +16,7 @@ export function Home() {
     useEffect(() => {
 
         function getOrderRule() {
-            switch(orderIndex) {
+            switch (orderIndex) {
                 case 0:
                     return 'name'
                 case 1:
@@ -58,7 +59,7 @@ export function Home() {
                 </div>
                 <div className="link-to-cart">
                     <Link to='/checkout'>
-                        <img src="/assets/cart-icon.svg" alt="Carrinho" />
+                        <img className="image" src="/assets/cart-icon.svg" alt="Carrinho" />
                     </Link>
                 </div>
             </header>
@@ -69,7 +70,9 @@ export function Home() {
                 </button>
             </div>
             <section className="products">
-                {products}
+                <ul>
+                    {products}
+                </ul>
             </section>
         </div>
     )
