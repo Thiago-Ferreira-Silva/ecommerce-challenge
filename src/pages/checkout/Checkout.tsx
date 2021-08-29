@@ -1,16 +1,43 @@
+import { ReactNode, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartItem } from "../../components/cartItem/CartItem";
+import { CartContext } from "../../contexts/CartContext";
 
-const itemData = {
-    id: 312,
-    name: "Super Mario Odyssey",
-    price: 197.88,
-    image: "super-mario-odyssey.png"
+type ItemType = {
+    id: number
+    name: string
+    price: number
+    image: string
 }
 
 export function Checkout() {
 
+    const { cartItems, removeAll } = useContext(CartContext)
+    const [items, setItems] = useState([] as Array<ReactNode>)
+    const [subTotal, setSubTotal] = useState(0)
+    const [shipping, setShipping] = useState(0)
+    const [total, setTotal] = useState(0)
+
+    useEffect(() => {
+
+        const itemsArray = Object.values(cartItems)
+
+        const itemsJSX = itemsArray.map((item: ItemType) => <CartItem {...item} key={item.id} />)
+        setItems(itemsJSX)
+
+        let sub = 0
+        itemsArray.forEach(item => sub = sub + item.price)
+
+        const ship = sub > 250 ? 0 : itemsArray.length*10
+        
+        setSubTotal(sub)
+        setShipping(ship)
+        setTotal(sub + ship)
+
+    }, [cartItems])
+
     function buy() {
+        removeAll()
         alert('Compra realizada com sucesso!')
     }
 
@@ -26,12 +53,18 @@ export function Checkout() {
             </header>
             <section>Meu carrinho</section>
             <section className="items">
-                <CartItem {...itemData} />
+                {items}
             </section>
             <section className="checkout">
-                <div className="subtotal">Subtotal: {}</div>
-                <div className="shipping">Frete: {}</div>
-                <div className="total">Total: {}</div>
+                <div className="subtotal">Subtotal:
+                    {subTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                </div>
+                <div className="shipping">Frete:
+                    {shipping.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                </div>
+                <div className="total">Total:
+                    {total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+                </div>
                 <button className="buy" onClick={buy}>Finalizar compra</button>
             </section>
         </div>
