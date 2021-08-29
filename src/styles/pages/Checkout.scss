@@ -1,0 +1,51 @@
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+
+    header {
+        background-color: #b9c9cc;
+        height: 10vh;
+        padding: 0 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .link-to-home .link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+    }
+
+    .my-cart {
+        margin: 2rem 0 1rem 0.4rem;
+        font-size: 1.2rem;
+    }
+
+    .items ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .checkout {
+
+        align-self: flex-end;
+        margin-right: 5vw;
+        font-size: 1.1rem;
+
+        display: flex;
+        flex-direction: column;
+
+        button {
+            font-size: 1.05rem;
+            height: 2.5rem;
+
+            margin: 10px 0;
+
+            background-color: #007bff;
+            border: #007bff;
+            color: #fff;
+        }
+    }
+}

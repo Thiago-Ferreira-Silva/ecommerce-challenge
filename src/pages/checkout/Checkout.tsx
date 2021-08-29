@@ -1,3 +1,4 @@
+import '../../styles/pages/Checkout.scss'
 import { ReactNode, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartItem } from "../../components/cartItem/CartItem";
@@ -28,13 +29,13 @@ export function Checkout() {
         let sub = 0
         itemsArray.forEach(item => sub = sub + item.price)
 
-        const ship = sub > 250 ? 0 : itemsArray.length*10
-        
+        const ship = sub > 250 ? 0 : itemsArray.length * 10
+
         setSubTotal(sub)
         setShipping(ship)
         setTotal(sub + ship)
 
-    }, [cartItems])
+    }, [cartItems]) //bug: não atualiza quando remove um item
 
     function buy() {
         removeAll()
@@ -48,12 +49,14 @@ export function Checkout() {
                     Loja de games
                 </h1>
                 <div className="link-to-home">
-                    <Link to='/' >Voltar</Link>
+                    <Link className="link" to='/' >Voltar</Link>
                 </div>
             </header>
-            <section>Meu carrinho</section>
+            <section className="my-cart">Meu carrinho</section>
             <section className="items">
-                {items}
+                <ul>
+                    {items}
+                </ul>
             </section>
             <section className="checkout">
                 <div className="subtotal">Subtotal:
