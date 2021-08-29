@@ -1,18 +1,18 @@
-import React from 'react';
-import { Product } from './components/product/Product';
-import './styles/App.scss';
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Home } from './pages/home/Home'
+import './styles/App.scss'
 
 function App() {
   return (
-    <div className="App">
-      <Product
-        id={312}
-        name={"Super Mario Odyssey"}
-        price={197.88}
-        score={100}
-        image={"super-mario-odyssey.png"} />
-    </div>
-  );
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact component={Home} />
+        </Switch>
+      </div>
+    </BrowserRouter>
+  )
 }
 
 export default App;
