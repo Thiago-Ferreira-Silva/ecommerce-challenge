@@ -1,3 +1,5 @@
+import { useContext } from "react"
+import { CartContext } from "../../contexts/CartContext"
 
 type ProductProps = {
     id: number
@@ -9,8 +11,11 @@ type ProductProps = {
 
 export function Product({ id, name, price, score, image } : ProductProps) {
 
-    function addToCart() {
+    const { addItem } = useContext(CartContext)
 
+    function addToCart() {
+        addItem({ id, name, price, image })
+        alert('Adicionado com sucesso!')
     }
 
     return (

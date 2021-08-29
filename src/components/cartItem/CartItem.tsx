@@ -1,3 +1,5 @@
+import { useContext } from "react"
+import { CartContext } from "../../contexts/CartContext"
 
 type CartItemProps = {
     id: number
@@ -8,8 +10,10 @@ type CartItemProps = {
 
 export function CartItem({ id, name, price, image }: CartItemProps) {
 
+    const { removeItem } = useContext(CartContext)
+
     function remove() {
-        
+        removeItem(id)
     }
 
     return (
