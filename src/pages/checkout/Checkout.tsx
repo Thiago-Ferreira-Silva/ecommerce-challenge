@@ -3,6 +3,7 @@ import { ReactNode, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartItem } from "../../components/cartItem/CartItem";
 import { CartContext } from "../../contexts/CartContext";
+import { toast } from 'react-toastify';
 
 type ItemType = {
     id: number
@@ -21,7 +22,7 @@ export function Checkout() {
 
     useEffect(() => {
 
-        const itemsArray = Object.values(cartItems)
+        const itemsArray = Object.values(cartItems || {})
 
         const itemsJSX = itemsArray.map((item: ItemType) => { 
             return <CartItem {...item} key={item.id} />
@@ -41,7 +42,7 @@ export function Checkout() {
 
     function buy() {
         removeAll()
-        alert('Compra realizada com sucesso!')
+        toast('Compra realizada com sucesso!', { autoClose: 1200 })
     }
 
     return (
