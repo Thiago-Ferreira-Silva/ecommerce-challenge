@@ -1,4 +1,5 @@
 import '../../styles/components/Product.scss'
+import { toast } from 'react-toastify'
 import { useContext } from "react"
 import { CartContext } from "../../contexts/CartContext"
 
@@ -16,7 +17,7 @@ export function Product({ id, name, price, score, image }: ProductProps) {
 
     function addToCart() {
         addItem({ id, name, price, image })
-        alert('Adicionado com sucesso!')
+        toast('Adicionado com sucesso!', { autoClose: 1200 })
     }
 
     return (
