@@ -18,14 +18,13 @@ export function Checkout() {
     const [subTotal, setSubTotal] = useState(0)
     const [shipping, setShipping] = useState(0)
     const [total, setTotal] = useState(0)
-    const [update, setUpdate] = useState(0)
 
     useEffect(() => {
 
         const itemsArray = Object.values(cartItems)
 
-        const itemsJSX = itemsArray.map((item: ItemType) => {
-            return <CartItem {...item} key={item.id} onRemove={updateList} />
+        const itemsJSX = itemsArray.map((item: ItemType) => { 
+            return <CartItem {...item} key={item.id} />
         })
         setItems(itemsJSX)
 
@@ -38,16 +37,11 @@ export function Checkout() {
         setShipping(ship)
         setTotal(sub + ship)
 
-    }, [cartItems, updateList])
+    }, [cartItems])
 
     function buy() {
         removeAll()
         alert('Compra realizada com sucesso!')
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    function updateList() {
-        setUpdate(update + 1)
     }
 
     return (

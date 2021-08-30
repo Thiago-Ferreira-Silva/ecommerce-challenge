@@ -7,16 +7,15 @@ type CartItemProps = {
     name: string
     price: number
     image: string
-    onRemove: () => void
 }
 
-export function CartItem({ id, name, price, image, onRemove }: CartItemProps) {
+export function CartItem({ id, name, price, image }: CartItemProps) {
 
     const { removeItem } = useContext(CartContext)
 
     function remove() {
         removeItem(id)
-        onRemove()
+        document.location.reload()
     }
 
     return (
