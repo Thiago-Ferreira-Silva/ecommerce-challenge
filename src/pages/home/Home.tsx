@@ -12,6 +12,7 @@ export function Home() {
 
     const [products, setProducts] = useState([] as Products)
     const [orderIndex, setOrderIndex] = useState(0)
+    const [search, setSearch] = useState('')
 
     useEffect(() => {
 
@@ -40,9 +41,15 @@ export function Home() {
             }
         })
 
-        const productsJSX = productsJSON.map(product => <Product {...product} key={product.id} />)
+        const productsFiltered = productsJSON.filter((product) => {
+            return product.name.toLowerCase().includes(search.toLowerCase())
+        })
+
+        const productsJSX = productsFiltered.map(product => {
+            return <Product {...product} key={product.id} />
+        })
         setProducts(productsJSX)
-    }, [orderIndex])
+    }, [orderIndex, search])
 
     function handleSort() {
         orderIndex < 2 ? setOrderIndex(orderIndex + 1) : setOrderIndex(0)
@@ -55,11 +62,13 @@ export function Home() {
                     Loja de games
                 </h1>
                 <div className="search">
-                    <input type="text" placeholder="Buscar jogo" />
+                    <input type="text" placeholder="Buscar jogo"
+                        onChange={e => setSearch(e.target.value)} value={search} />
                 </div>
                 <div className="link-to-cart">
                     <Link to='/checkout'>
-                        <img className="image" src="/assets/cart-icon.svg" alt="Carrinho" />
+                        <img className="image"
+                            src="/assets/cart-icon.svg" alt="Carrinho" />
                     </Link>
                 </div>
             </header>
