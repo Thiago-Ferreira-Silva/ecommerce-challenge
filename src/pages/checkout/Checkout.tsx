@@ -18,12 +18,15 @@ export function Checkout() {
     const [subTotal, setSubTotal] = useState(0)
     const [shipping, setShipping] = useState(0)
     const [total, setTotal] = useState(0)
+    const [update, setUpdate] = useState(0)
 
     useEffect(() => {
 
         const itemsArray = Object.values(cartItems)
 
-        const itemsJSX = itemsArray.map((item: ItemType) => <CartItem {...item} key={item.id} />)
+        const itemsJSX = itemsArray.map((item: ItemType) => {
+            return <CartItem {...item} key={item.id} onRemove={updateList} />
+        })
         setItems(itemsJSX)
 
         let sub = 0
@@ -35,11 +38,16 @@ export function Checkout() {
         setShipping(ship)
         setTotal(sub + ship)
 
-    }, [cartItems]) //bug: não atualiza quando remove um item
+    }, [cartItems, updateList])
 
     function buy() {
         removeAll()
         alert('Compra realizada com sucesso!')
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    function updateList() {
+        setUpdate(update + 1)
     }
 
     return (

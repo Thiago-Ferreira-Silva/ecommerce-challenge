@@ -7,14 +7,16 @@ type CartItemProps = {
     name: string
     price: number
     image: string
+    onRemove: () => void
 }
 
-export function CartItem({ id, name, price, image }: CartItemProps) {
+export function CartItem({ id, name, price, image, onRemove }: CartItemProps) {
 
     const { removeItem } = useContext(CartContext)
 
     function remove() {
         removeItem(id)
+        onRemove()
     }
 
     return (
