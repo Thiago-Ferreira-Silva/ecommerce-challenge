@@ -45,4 +45,18 @@
         flex-wrap: wrap;
         margin-left: 5vw;
     }
+
+    @media screen and (max-width: 600px) {
+        header h1{
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 365px) {
+        header {
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 6rem;
+        }
+    }
 }
