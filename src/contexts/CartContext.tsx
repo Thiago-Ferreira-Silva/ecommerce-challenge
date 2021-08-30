@@ -29,8 +29,9 @@ export function CartContextProvider(props: CartContextProviderProps) {
     const [cartItems, setCartItems] = useState({} as CartItemsType)
 
     useEffect(() => {
-        const items = JSON.parse(JSON.stringify(localStorage.getItem('ecommerce-challenge-cart'))) || {}
-        setCartItems(JSON.parse(items))
+        const items = JSON.stringify(localStorage.getItem('ecommerce-challenge-cart') || '{}')
+
+        setCartItems(JSON.parse(JSON.parse(items)))
     }, [])
 
     function addItem(item: CartItemType) {
