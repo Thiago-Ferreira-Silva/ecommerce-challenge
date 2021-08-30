@@ -15,7 +15,7 @@ export function CartItem({ id, name, price, image }: CartItemProps) {
 
     function remove() {
         removeItem(id)
-        document.location.reload()
+        window.location.reload()
     }
 
     return (
