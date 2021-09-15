@@ -7,9 +7,10 @@ type CartItemProps = {
     name: string
     price: number
     image: string
+    amount: number
 }
 
-export function CartItem({ id, name, price, image }: CartItemProps) {
+export function CartItem({ id, name, price, image, amount }: CartItemProps) {
 
     const { removeItem } = useContext(CartContext)
 
@@ -33,6 +34,7 @@ export function CartItem({ id, name, price, image }: CartItemProps) {
                 <div className="remove">
                     <button onClick={remove}>Remover</button>
                 </div>
+                <h1>{amount}</h1>
             </section>
         </div>
     )

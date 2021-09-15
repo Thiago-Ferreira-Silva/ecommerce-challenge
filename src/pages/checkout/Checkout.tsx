@@ -10,6 +10,7 @@ type ItemType = {
     name: string
     price: number
     image: string
+    amount: number
 }
 
 export function Checkout() {
@@ -30,9 +31,13 @@ export function Checkout() {
         setItems(itemsJSX)
 
         let sub = 0
-        itemsArray.forEach(item => sub = sub + item.price)
+        let cartLength = 0
+        itemsArray.forEach(item => {
+            sub = sub + item.price*item.amount
+            cartLength += item.amount
+        })
 
-        const ship = sub > 250 ? 0 : itemsArray.length * 10
+        const ship = sub > 250 ? 0 : cartLength * 10
 
         setSubTotal(sub)
         setShipping(ship)

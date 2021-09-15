@@ -5,6 +5,7 @@ type CartItemType = {
     name: string
     price: number
     image: string
+    amount: number
 }
 
 type CartItemsType = {
@@ -36,6 +37,7 @@ export function CartContextProvider(props: CartContextProviderProps) {
 
     function addItem(item: CartItemType) {
         const items = cartItems
+        if(items[item.id]) item.amount = items[item.id].amount + 1
         items[item.id] = item
         setCartItems(items)
         localStorage.setItem('ecommerce-challenge-cart', JSON.stringify(items))

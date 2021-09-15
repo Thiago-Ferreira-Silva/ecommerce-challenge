@@ -16,7 +16,7 @@ export function Product({ id, name, price, score, image }: ProductProps) {
     const { addItem } = useContext(CartContext)
 
     function addToCart() {
-        addItem({ id, name, price, image })
+        addItem({ id, name, price, image, amount: 1 })
         toast('Adicionado com sucesso!', { autoClose: 1200 })
     }
 
