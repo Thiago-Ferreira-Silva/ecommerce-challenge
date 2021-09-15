@@ -13,6 +13,9 @@ type ItemType = {
     amount: number
 }
 
+const SHIP_ITEM_PRICE = 10
+const FREE_SHIP_LIMIT = 250
+
 export function Checkout() {
 
     const { cartItems, removeAll } = useContext(CartContext)
@@ -37,7 +40,7 @@ export function Checkout() {
             cartLength += item.amount
         })
 
-        const ship = sub > 250 ? 0 : cartLength * 10
+        const ship = sub > FREE_SHIP_LIMIT ? 0 : cartLength * SHIP_ITEM_PRICE
 
         setSubTotal(sub)
         setShipping(ship)
