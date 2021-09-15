@@ -76,7 +76,7 @@ export function Checkout() {
                 <div className="total">Total:
                     {total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
                 </div>
-                <button className="buy" onClick={buy}>Finalizar compra</button>
+                <button className="buy" onClick={buy} disabled={items.length < 1}>Finalizar compra</button>
             </section>
         </div>
     )
